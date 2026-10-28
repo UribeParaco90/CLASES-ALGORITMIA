@@ -1,0 +1,4 @@
+django
+pymongo
+dnspython
+python-dotenv

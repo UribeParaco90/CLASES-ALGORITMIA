@@ -775,15 +775,28 @@ No necesitas ejecutar `makemigrations`, porque no hemos creado modelos Django pa
 
 ## 14. Comprobar la configuración y ejecutar
 
-Primero ejecuta:
+Desde la carpeta del proyecto, activa el entorno virtual en PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+Si prefieres no activarlo, ejecuta Python directamente desde el entorno virtual:
+
+```powershell
+.\venv\Scripts\python.exe manage.py check
+.\venv\Scripts\python.exe manage.py runserver
+```
+
+Usar esta ruta evita depender del comando global `python` de Windows. Si
+PowerShell indica que no encuentra `.\venv\Scripts\python.exe`, comprueba que
+la terminal esté ubicada en la carpeta raíz del proyecto y que el entorno
+virtual se haya creado.
+
+Si activaste el entorno virtual, también puedes usar el comando `python`:
 
 ```powershell
 python manage.py check
-```
-
-Si no hay errores, inicia el servidor:
-
-```powershell
 python manage.py runserver
 ```
 

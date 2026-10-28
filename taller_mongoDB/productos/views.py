@@ -15,6 +15,7 @@ def validar_producto(datos):
     """Valida los datos recibidos del formulario."""
 
     nombre = datos.get("nombre", "").strip()
+    categoria = datos.get("categoria", "").strip()
     precio_texto = datos.get("precio", "").strip()
     cantidad_texto = datos.get("cantidad", "").strip()
 
@@ -24,6 +25,11 @@ def validar_producto(datos):
         errores.append("El nombre es obligatorio.")
     elif len(nombre) > 100:
         errores.append("El nombre no puede superar 100 caracteres.")
+
+    if not categoria:
+        errores.append("La categoría es obligatoria.")
+    elif len(categoria) > 100:
+        errores.append("La categoría no puede superar 100 caracteres.")
 
     try:
         precio = float(precio_texto)
@@ -47,6 +53,7 @@ def validar_producto(datos):
 
     producto = {
         "nombre": nombre,
+        "categoria": categoria,
         "precio": precio,
         "cantidad": cantidad,
     }
@@ -61,6 +68,8 @@ def listar(request):
         datos = list(
             coleccion_productos.find().sort("nombre", 1)
         )
+        for producto in datos:
+            producto["id"] = str(producto["_id"])
 
         return render(
             request,
